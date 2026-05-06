@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="./toDoList.css">
+    <title>To-DoList</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="./check.png" alt="Bootstrap" width="24" height="24">
+            </a>
+            <a class="navbar-brand" href="#">To-Do List</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#adicionarLista">
+                    Nova lista
+                </button>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Categorias
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#compras">Compras</a></li>
+                            <li><a class="dropdown-item" href="#lazer">Lazer</a></li>
+                            <li><a class="dropdown-item" href="#eventos">Eventos</a></li>
+                            <li><a class="dropdown-item" href="#financas">Finanças</a></li>
+                            <li><a class="dropdown-item" href="#rotina">Rotina</a></li>
+                            <li><a class="dropdown-item" href="#saude">Saúde</a></li>
+                            <li><a class="dropdown-item" href="#trabalho">Trabalho</a></li>
+                            <li><a class="dropdown-item" href="#estudos">Estudos</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Adicione categoria</a></li>
+                            <li><a class="dropdown-item purple" href="#">Todas categorias</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#cadastroModal">
+                    Cadastre-se
+                </button>
+
+                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+
+                <div class="modal fade" id="adicionarLista" tabindex="-1" aria-labelledby="adicionarLista" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="loginModalLabel">Nova Lista</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div id="adicionarListaAlert"></div>
+                                <form id="novaListaForm">
+                                    <div class="form-group mb-3">
+                                        <label for="titulo">Título</label>
+                                        <input type="text" class="form-control" id="exampleInputTitle" placeholder="" required>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="categoriaLista">Categoria</label>
+                                        <select class="form-select" id="categoriaLista" required>
+                                            <option value="" disabled selected>Selecione uma categoria</option>
+                                            <option value="compras">Compras</option>
+                                            <option value="lazer">Lazer</option>
+                                            <option value="eventos">Eventos</option>
+                                            <option value="financas">Finanças</option>
+                                            <option value="rotina">Rotina</option>
+                                            <option value="saude">Saúde</option>
+                                            <option value="trabalho">Trabalho</option>
+                                            <option value="estudos">Estudos</option>
+                                            <option value="nova">Adicione uma categoria</option>
+                                        </select>
+                                        <input type="text" class="form-control mt-2 d-none" id="novaCategoria" placeholder="Digite o nome da nova categoria">
+                                    </div>
+                                    <label for="Items">Itens</label>
+                                    <div class="d-flex mt-2">
+                                        <input class="form-control me-2" type="text" id="exampleInputItem" placeholder="Adicione um item da lista" aria-label="Adicione um item"/>
+                                        <button type="button" id="btnAdicionarItem" class="btn btn-primary">+</button>
+                                    </div>
+                                    <ul id="listaItens" class="list-unstyled mt-3 mb-0"></ul>
+                                </form>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                <button type="button" id="btnAdicionar" class="btn btn-primary">Adicionar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="loginModalLabel">Login</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div id="loginAlert"></div>
+                                <form id="loginForm">
+                                    <div class="form-group mb-3">
+                                        <label for="loginEmail">Email</label>
+                                        <input type="email" class="form-control" id="loginEmail" placeholder="Digite seu email" required>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="loginPassword">Senha</label>
+                                        <input type="password" class="form-control" id="loginPassword" placeholder="Digite sua senha" required>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                <button type="button" id="btnEntrar" class="btn btn-primary">Entrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="cadastroModal" tabindex="-1" aria-labelledby="cadastroModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="cadastroModalLabel">Cadastro</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="cadastroAlert"></div>
+                        <form id="cadastroForm">
+                            <div class="form-group mb-2">
+                                <label for="exampleInputNome">Nome</label>
+                                <input type="text" class="form-control" id="exampleInputNome" placeholder="Digite seu Nome" required>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="exampleInputEmail1">Email</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Digite seu email" required>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="exampleInputPassword1">Senha</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Digite sua senha" required>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="exampleInputConfirmPassword">Confirmar Senha</label>
+                                <input type="password" class="form-control" id="exampleInputConfirmPassword" placeholder="Confirme sua senha" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <button type="button" id="btnSalvarCadastro" class="btn btn-primary">Cadastrar</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="cards.cursos.online container my-4">
+        <h2 id="compras">Compras</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card shadow h-100 position-relative">
+                    <div class="card-body">
+                        <button class="btn btn-sm btn-outline-primary btn-lixo position-absolute top-0 end-0 m-2 border-0" title="Deletar lista">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                            <h5 class="card-title">Título da Lista</h5>
+                            <div class="d-flex mt-2">
+                                <input class="form-control me-2" type="text" placeholder="Adicione" aria-label="Adicione um item"/>
+                                <a href="#" class="btn btn-primary adicionar">+</a>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cards.cursos.presencial container my-4">
+        <h2 id="lazer">Lazer</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card shadow h-100 position-relative">
+                    <div class="card-body">
+                        <button class="btn btn-sm btn-outline-primary btn-lixo position-absolute top-0 end-0 m-2 border-0" title="Deletar lista">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                            <h5 class="card-title">Título da Lista</h5>
+                            <div class="d-flex mt-2">
+                                <input class="form-control me-2" type="text" placeholder="Adicione" aria-label="Adicione um item"/>
+                                <a href="#" class="btn btn-primary adicionar">+</a>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cards.personalizados container my-4">
+        <h2 id="eventos">Eventos</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card shadow h-100 position-relative">
+                    <div class="card-body">
+                        <button class="btn btn-sm btn-outline-primary btn-lixo position-absolute top-0 end-0 m-2 border-0" title="Deletar lista">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                            <h5 class="card-title">Título da Lista</h5>
+                            <div class="d-flex mt-2">
+                                <input class="form-control me-2" type="text" placeholder="Adicione" aria-label="Adicione um item"/>
+                                <a href="#" class="btn btn-primary adicionar">+</a>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cards.personalizados container my-4">
+        <h2 id="rotina">Rotina</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card shadow h-100 position-relative">
+                    <div class="card-body">
+                        <button class="btn btn-sm btn-outline-primary btn-lixo position-absolute top-0 end-0 m-2 border-0" title="Deletar lista">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                            <h5 class="card-title">Título da Lista</h5>
+                            <div class="d-flex mt-2">
+                                <input class="form-control me-2" type="text" placeholder="Adicione" aria-label="Adicione um item"/>
+                                <a href="#" class="btn btn-primary adicionar">+</a>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="cards.personalizados container my-4">
+        <h2 id="financas">Finanças</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card shadow h-100 position-relative">
+                    <div class="card-body">
+                        <button class="btn btn-sm btn-outline-primary btn-lixo position-absolute top-0 end-0 m-2 border-0" title="Deletar lista">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                            <h5 class="card-title">Título da Lista</h5>
+                            <div class="d-flex mt-2">
+                                <input class="form-control me-2" type="text" placeholder="Adicione" aria-label="Adicione um item"/>
+                                <a href="#" class="btn btn-primary adicionar">+</a>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cards.personalizados container my-4">
+        <h2 id="saude">Saude</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card shadow h-100 position-relative">
+                    <div class="card-body">
+                        <button class="btn btn-sm btn-outline-primary btn-lixo position-absolute top-0 end-0 m-2 border-0" title="Deletar lista">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                            <h5 class="card-title">Título da Lista</h5>
+                            <div class="d-flex mt-2">
+                                <input class="form-control me-2" type="text" placeholder="Adicione" aria-label="Adicione um item"/>
+                                <a href="#" class="btn btn-primary adicionar">+</a>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cards.personalizados container my-4">
+        <h2 id="trabalho">Trabalho</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card shadow h-100 position-relative">
+                    <div class="card-body">
+                        <button class="btn btn-sm btn-outline-primary btn-lixo position-absolute top-0 end-0 m-2 border-0" title="Deletar lista">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                            <h5 class="card-title">Título da Lista</h5>
+                            <div class="d-flex mt-2">
+                                <input class="form-control me-2" type="text" placeholder="Adicione" aria-label="Adicione um item"/>
+                                <a href="#" class="btn btn-primary adicionar">+</a>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cards.personalizados container my-4">
+        <h2 id="estudo">Estudo</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card shadow h-100 position-relative">
+                    <div class="card-body">
+                        <button class="btn btn-sm btn-outline-primary btn-lixo position-absolute top-0 end-0 m-2 border-0" title="Deletar lista">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                            <h5 class="card-title">Título da Lista</h5>
+                            <div class="d-flex mt-2">
+                                <input class="form-control me-2" type="text" placeholder="Adicione" aria-label="Adicione um item"/>
+                                <a href="#" class="btn btn-primary adicionar">+</a>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal fade" id="confirmarDeleteModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-body text-center py-4">
+                    <p class="mb-3 fw-semibold">Você deseja deletar essa lista?</p>
+                    <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" id="btnConfirmarDelete" class="btn btn-danger">Deletar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center bg-body-tertiary">
+        <div class="container pt-4">
+            <section class="mb-4">
+            <a
+                data-mdb-ripple-init
+                class="btn btn-link btn-floating btn-lg text-body m-1"
+                href="#!"
+                role="button"
+                data-mdb-ripple-color="dark"
+                ><i class="fab fa-facebook-f"></i
+            ></a>
+
+            <a
+                data-mdb-ripple-init
+                class="btn btn-link btn-floating btn-lg text-body m-1"
+                href="#!"
+                role="button"
+                data-mdb-ripple-color="dark"
+                ><i class="fab fa-twitter"></i
+            ></a>
+
+            <a
+                data-mdb-ripple-init
+                class="btn btn-link btn-floating btn-lg text-body m-1"
+                href="#!"
+                role="button"
+                data-mdb-ripple-color="dark"
+                ><i class="fab fa-google"></i
+            ></a>
+
+            <a
+                data-mdb-ripple-init
+                class="btn btn-link btn-floating btn-lg text-body m-1"
+                href="#!"
+                role="button"
+                data-mdb-ripple-color="dark"
+                ><i class="fab fa-instagram"></i
+            ></a>
+
+            <a
+                data-mdb-ripple-init
+                class="btn btn-link btn-floating btn-lg text-body m-1"
+                href="#!"
+                role="button"
+                data-mdb-ripple-color="dark"
+                ><i class="fab fa-linkedin"></i
+            ></a>
+            <a
+                data-mdb-ripple-init
+                class="btn btn-link btn-floating btn-lg text-body m-1"
+                href="./github.jpg"
+                role="button"
+                data-mdb-ripple-color="dark"
+                ><i class="fab fa-github"></i
+            ></a>
+        </section>
+    </div>
+
+    <div class="text-center p-3" style="background-color: rgba(114, 114, 114, 0.05);">
+        © 2020 Copyright
+        <a class="text-body" href="https://mdbootstrap.com/">To-Do List</a>
+    </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="./toDoList.js"></script>
+</body>
+</html>
