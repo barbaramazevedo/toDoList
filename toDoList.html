@@ -9,19 +9,16 @@
     <title>To-DoList</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="light">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" data-bs-theme="light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="./check.png" alt="Bootstrap" width="24" height="24">
+                <img src="./images/check.png" alt="Bootstrap" width="24" height="24">
             </a>
             <a class="navbar-brand" href="#">To-Do List</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#adicionarLista">
-                    Nova lista
-                </button>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -35,133 +32,136 @@
                             <li><a class="dropdown-item" href="#rotina">Rotina</a></li>
                             <li><a class="dropdown-item" href="#saude">Saúde</a></li>
                             <li><a class="dropdown-item" href="#trabalho">Trabalho</a></li>
-                            <li><a class="dropdown-item" href="#estudos">Estudos</a></li>
+                            <li><a class="dropdown-item" href="#estudo">Estudos</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Adicione categoria</a></li>
                             <li><a class="dropdown-item purple" href="#">Todas categorias</a></li>
                         </ul>
                     </li>
                 </ul>
                 
-                <button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#cadastroModal">
+                 <button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#adicionarLista">
+                    + Lista
+                </button>
+
+                <button type="button" class="btn btn-outline-primary ms-2" data-bs-toggle="modal" data-bs-target="#cadastroModal">
                     Cadastre-se
                 </button>
 
                 <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
 
-                <div class="modal fade" id="adicionarLista" tabindex="-1" aria-labelledby="adicionarLista" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="loginModalLabel">Nova Lista</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div id="adicionarListaAlert"></div>
-                                <form id="novaListaForm">
-                                    <div class="form-group mb-3">
-                                        <label for="titulo">Título</label>
-                                        <input type="text" class="form-control" id="exampleInputTitle" placeholder="" required>
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label for="categoriaLista">Categoria</label>
-                                        <select class="form-select" id="categoriaLista" required>
-                                            <option value="" disabled selected>Selecione uma categoria</option>
-                                            <option value="compras">Compras</option>
-                                            <option value="lazer">Lazer</option>
-                                            <option value="eventos">Eventos</option>
-                                            <option value="financas">Finanças</option>
-                                            <option value="rotina">Rotina</option>
-                                            <option value="saude">Saúde</option>
-                                            <option value="trabalho">Trabalho</option>
-                                            <option value="estudos">Estudos</option>
-                                            <option value="nova">Adicione uma categoria</option>
-                                        </select>
-                                        <input type="text" class="form-control mt-2 d-none" id="novaCategoria" placeholder="Digite o nome da nova categoria">
-                                    </div>
-                                    <label for="Items">Itens</label>
-                                    <div class="d-flex mt-2">
-                                        <input class="form-control me-2" type="text" id="exampleInputItem" placeholder="Adicione um item da lista" aria-label="Adicione um item"/>
-                                        <button type="button" id="btnAdicionarItem" class="btn btn-primary">+</button>
-                                    </div>
-                                    <ul id="listaItens" class="list-unstyled mt-3 mb-0"></ul>
-                                </form>
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                <button type="button" id="btnAdicionar" class="btn btn-primary">Adicionar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="loginModalLabel">Login</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div id="loginAlert"></div>
-                                <form id="loginForm">
-                                    <div class="form-group mb-3">
-                                        <label for="loginEmail">Email</label>
-                                        <input type="email" class="form-control" id="loginEmail" placeholder="Digite seu email" required>
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label for="loginPassword">Senha</label>
-                                        <input type="password" class="form-control" id="loginPassword" placeholder="Digite sua senha" required>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                <button type="button" id="btnEntrar" class="btn btn-primary">Entrar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal fade" id="cadastroModal" tabindex="-1" aria-labelledby="cadastroModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="cadastroModalLabel">Cadastro</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div id="cadastroAlert"></div>
-                        <form id="cadastroForm">
-                            <div class="form-group mb-2">
-                                <label for="exampleInputNome">Nome</label>
-                                <input type="text" class="form-control" id="exampleInputNome" placeholder="Digite seu Nome" required>
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="exampleInputEmail1">Email</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Digite seu email" required>
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="exampleInputPassword1">Senha</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Digite sua senha" required>
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="exampleInputConfirmPassword">Confirmar Senha</label>
-                                <input type="password" class="form-control" id="exampleInputConfirmPassword" placeholder="Confirme sua senha" required>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                        <button type="button" id="btnSalvarCadastro" class="btn btn-primary">Cadastrar</button>
-                    </div>
-                    </div>
-                </div>
-                </div>
             </div>
         </div>
     </nav>
+
+    <div class="modal fade" id="adicionarLista" tabindex="-1" aria-labelledby="adicionarLista" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="adicionarListaLabel">Adicionar lista</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="adicionarListaAlert"></div>
+                    <form id="novaListaForm">
+                        <div class="form-group mb-3">
+                            <label for="titulo">Título</label>
+                            <input type="text" class="form-control" id="exampleInputTitle" placeholder="" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="categoriaLista">Categoria</label>
+                            <select class="form-select" id="categoriaLista" required>
+                                <option value="" disabled selected>Selecione uma categoria</option>
+                                <option value="compras">Compras</option>
+                                <option value="lazer">Lazer</option>
+                                <option value="eventos">Eventos</option>
+                                <option value="financas">Finanças</option>
+                                <option value="rotina">Rotina</option>
+                                <option value="saude">Saúde</option>
+                                <option value="trabalho">Trabalho</option>
+                                <option value="estudos">Estudos</option>
+                                <option value="nova">Adicione uma categoria</option>
+                            </select>
+                            <input type="text" class="form-control mt-2 d-none" id="novaCategoria" placeholder="Digite o nome da nova categoria">
+                        </div>
+                        <label for="Items">Itens</label>
+                        <div class="d-flex mt-2">
+                            <input class="form-control me-2" type="text" id="exampleInputItem" placeholder="Adicione um item da lista" aria-label="Adicione um item"/>
+                            <button type="button" id="btnAdicionarItem" class="btn btn-primary">+</button>
+                        </div>
+                        <ul id="listaItens" class="list-unstyled mt-3 mb-0"></ul>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" id="btnAdicionar" class="btn btn-primary">Adicionar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="loginModalLabel">Login</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="loginAlert"></div>
+                    <form id="loginForm">
+                        <div class="form-group mb-3">
+                            <label for="loginEmail">Email</label>
+                            <input type="email" class="form-control" id="loginEmail" placeholder="Digite seu email" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="loginPassword">Senha</label>
+                            <input type="password" class="form-control" id="loginPassword" placeholder="Digite sua senha" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" id="btnEntrar" class="btn btn-primary">Entrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="cadastroModal" tabindex="-1" aria-labelledby="cadastroModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="cadastroModalLabel">Cadastro</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="cadastroAlert"></div>
+                    <form id="cadastroForm">
+                        <div class="form-group mb-2">
+                            <label for="exampleInputNome">Nome</label>
+                            <input type="text" class="form-control" id="exampleInputNome" placeholder="Digite seu Nome" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="exampleInputEmail1">Email</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Digite seu email" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="exampleInputPassword1">Senha</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Digite sua senha" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="exampleInputConfirmPassword">Confirmar Senha</label>
+                            <input type="password" class="form-control" id="exampleInputConfirmPassword" placeholder="Confirme sua senha" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" id="btnSalvarCadastro" class="btn btn-primary">Cadastrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <section class="cards.cursos.online container my-4">
         <h2 id="compras">Compras</h2>
@@ -169,16 +169,44 @@
             <div class="col">
                 <div class="card shadow h-100 position-relative">
                     <div class="card-body">
+                        <button class="btn btn-sm btn-outline-primary border-0 position-absolute top-0" style="right: 2.75rem; top: 0.5rem !important;" title="Editar lista" data-bs-toggle="modal" data-bs-target="#editarListaModal">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
                         <button class="btn btn-sm btn-outline-primary btn-lixo position-absolute top-0 end-0 m-2 border-0" title="Deletar lista">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
-                            <h5 class="card-title">Título da Lista</h5>
-                            <div class="d-flex mt-2">
+                            <h5 class="card-title">Mercado</h5>
+                            <div class="d-flex mt-2 pb-3">
                                 <input class="form-control me-2" type="text" placeholder="Adicione" aria-label="Adicione um item"/>
                                 <a href="#" class="btn btn-primary adicionar">+</a>
                             </div>
+                            <li class="d-flex align-items-center gap-2 mb-1">
+                                <input type="checkbox" class="form-check-input mt-0">
+                                <span>Pão</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-2 mb-1">
+                                <input type="checkbox" class="form-check-input mt-0">
+                                <span>Leite</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-2 mb-1">
+                                <input type="checkbox" class="form-check-input mt-0">
+                                <span>Manteiga</span>
+                            </li>
                     </div>
                 </div>
+            </div>
+
+            <div class="col d-flex align-items-center ">
+                <button 
+                class="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center"
+                style="width: 40px; height: 40px;"
+                data-bs-toggle="modal"
+                data-bs-placement="top"
+                title="Adicionar nova lista"
+                data-bs-target="#adicionarLista"
+                >
+                +
+                </button>
             </div>
         </div>
     </section>
@@ -189,16 +217,44 @@
             <div class="col">
                 <div class="card shadow h-100 position-relative">
                     <div class="card-body">
+                        <button class="btn btn-sm btn-outline-primary border-0 position-absolute top-0" style="right: 2.75rem; top: 0.5rem !important;" title="Editar lista" data-bs-toggle="modal" data-bs-target="#editarListaModal">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
                         <button class="btn btn-sm btn-outline-primary btn-lixo position-absolute top-0 end-0 m-2 border-0" title="Deletar lista">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
-                            <h5 class="card-title">Título da Lista</h5>
-                            <div class="d-flex mt-2">
+                            <h5 class="card-title">Caminhar 5km</h5>
+                            <div class="d-flex mt-2 pb-3">
                                 <input class="form-control me-2" type="text" placeholder="Adicione" aria-label="Adicione um item"/>
                                 <a href="#" class="btn btn-primary adicionar">+</a>
                             </div>
+                            <li class="d-flex align-items-center gap-2 mb-1">
+                                <input type="checkbox" class="form-check-input mt-0">
+                                <span>Orla Guaíba</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-2 mb-1">
+                                <input type="checkbox" class="form-check-input mt-0">
+                                <span>Praça México</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-2 mb-1">
+                                <input type="checkbox" class="form-check-input mt-0">
+                                <span>Redenção</span>
+                            </li>
                     </div>
                 </div>
+            </div>
+
+            <div class="col d-flex align-items-center ">
+                <button 
+                class="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center"
+                style="width: 40px; height: 40px;"
+                data-bs-toggle="modal"
+                data-bs-placement="top"
+                title="Adicionar nova lista"
+                data-bs-target="#adicionarLista"
+                >
+                +
+                </button>
             </div>
         </div>
     </section>
@@ -209,16 +265,45 @@
             <div class="col">
                 <div class="card shadow h-100 position-relative">
                     <div class="card-body">
+                        <button class="btn btn-sm btn-outline-primary border-0 position-absolute top-0" style="right: 2.75rem; top: 0.5rem !important;" title="Editar lista" data-bs-toggle="modal" data-bs-target="#editarListaModal">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
                         <button class="btn btn-sm btn-outline-primary btn-lixo position-absolute top-0 end-0 m-2 border-0" title="Deletar lista">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
-                            <h5 class="card-title">Título da Lista</h5>
-                            <div class="d-flex mt-2">
+                            <h5 class="card-title">Aniversários</h5>
+                            <div class="d-flex mt-2 pb-3">
                                 <input class="form-control me-2" type="text" placeholder="Adicione" aria-label="Adicione um item"/>
                                 <a href="#" class="btn btn-primary adicionar">+</a>
                             </div>
+
+                            <li class="d-flex align-items-center gap-2 mb-1">
+                                <input type="checkbox" class="form-check-input mt-0">
+                                <span>Bárbara 22 de outubro</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-2 mb-1">
+                                <input type="checkbox" class="form-check-input mt-0">
+                                <span>Jéssica 04 de dezembro</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-2 mb-1">
+                                <input type="checkbox" class="form-check-input mt-0">
+                                <span>Samara 21 de dezembro</span>
+                            </li>
                     </div>
                 </div>
+            </div>
+
+            <div class="col d-flex align-items-center ">
+                <button 
+                class="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center"
+                style="width: 40px; height: 40px;"
+                data-bs-toggle="modal"
+                data-bs-placement="top"
+                title="Adicionar nova lista"
+                data-bs-target="#adicionarLista"
+                >
+                +
+                </button>
             </div>
         </div>
     </section>
@@ -229,16 +314,44 @@
             <div class="col">
                 <div class="card shadow h-100 position-relative">
                     <div class="card-body">
+                        <button class="btn btn-sm btn-outline-primary border-0 position-absolute top-0" style="right: 2.75rem; top: 0.5rem !important;" title="Editar lista" data-bs-toggle="modal" data-bs-target="#editarListaModal">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
                         <button class="btn btn-sm btn-outline-primary btn-lixo position-absolute top-0 end-0 m-2 border-0" title="Deletar lista">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
-                            <h5 class="card-title">Título da Lista</h5>
-                            <div class="d-flex mt-2">
+                            <h5 class="card-title">Diária</h5>
+                            <div class="d-flex mt-2 pb-3">
                                 <input class="form-control me-2" type="text" placeholder="Adicione" aria-label="Adicione um item"/>
                                 <a href="#" class="btn btn-primary adicionar">+</a>
                             </div>
+                            <li class="d-flex align-items-center gap-2 mb-1">
+                                <input type="checkbox" class="form-check-input mt-0">
+                                <span>Beber 2 litros de água</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-2 mb-1">
+                                <input type="checkbox" class="form-check-input mt-0">
+                                <span>Fazer duolingo</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-2 mb-1">
+                                <input type="checkbox" class="form-check-input mt-0">
+                                <span>Arrumar a cama</span>
+                            </li>
                     </div>
                 </div>
+            </div>
+
+            <div class="col d-flex align-items-center ">
+                <button 
+                class="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center"
+                style="width: 40px; height: 40px;"
+                data-bs-toggle="modal"
+                data-bs-placement="top"
+                title="Adicionar nova lista"
+                data-bs-target="#adicionarLista"
+                >
+                +
+                </button>
             </div>
         </div>
     </section>
@@ -250,36 +363,86 @@
             <div class="col">
                 <div class="card shadow h-100 position-relative">
                     <div class="card-body">
+                        <button class="btn btn-sm btn-outline-primary border-0 position-absolute top-0" style="right: 2.75rem; top: 0.5rem !important;" title="Editar lista" data-bs-toggle="modal" data-bs-target="#editarListaModal">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
                         <button class="btn btn-sm btn-outline-primary btn-lixo position-absolute top-0 end-0 m-2 border-0" title="Deletar lista">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
-                            <h5 class="card-title">Título da Lista</h5>
-                            <div class="d-flex mt-2">
+                            <h5 class="card-title">Custos mensais</h5>
+                            <div class="d-flex mt-2 pb-3">
                                 <input class="form-control me-2" type="text" placeholder="Adicione" aria-label="Adicione um item"/>
                                 <a href="#" class="btn btn-primary adicionar">+</a>
                             </div>
+
+                            <li class="d-flex align-items-center gap-2 mb-1">
+                                <input type="checkbox" class="form-check-input mt-0">
+                                <span>Mensalidade Uniritter</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-2 mb-1">
+                                <input type="checkbox" class="form-check-input mt-0">
+                                <span>Academia</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-2 mb-1">
+                                <input type="checkbox" class="form-check-input mt-0">
+                                <span>Ortodontista</span>
+                            </li>
                     </div>
                 </div>
+            </div>
+
+            <div class="col d-flex align-items-center ">
+                <button 
+                class="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center"
+                style="width: 40px; height: 40px;"
+                data-bs-toggle="modal"
+                data-bs-placement="top"
+                title="Adicionar nova lista"
+                data-bs-target="#adicionarLista"
+                >
+                +
+                </button>
             </div>
         </div>
     </section>
 
     <section class="cards.personalizados container my-4">
-        <h2 id="saude">Saude</h2>
+        <h2 id="saude">Saúde</h2>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col">
                 <div class="card shadow h-100 position-relative">
                     <div class="card-body">
+                        <button class="btn btn-sm btn-outline-primary border-0 position-absolute top-0" style="right: 2.75rem; top: 0.5rem !important;" title="Editar lista" data-bs-toggle="modal" data-bs-target="#editarListaModal">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
                         <button class="btn btn-sm btn-outline-primary btn-lixo position-absolute top-0 end-0 m-2 border-0" title="Deletar lista">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
-                            <h5 class="card-title">Título da Lista</h5>
-                            <div class="d-flex mt-2">
+                            <h5 class="card-title">Agendar médicos</h5>
+                            <div class="d-flex mt-2 pb-3">
                                 <input class="form-control me-2" type="text" placeholder="Adicione" aria-label="Adicione um item"/>
                                 <a href="#" class="btn btn-primary adicionar">+</a>
                             </div>
+
+                              <li class="d-flex align-items-center gap-2 mb-1">
+                                <input type="checkbox" class="form-check-input mt-0">
+                                <span>Oftalmologista 10 de julho</span>
+                            </li>
                     </div>
                 </div>
+            </div>
+
+            <div class="col d-flex align-items-center ">
+                <button 
+                class="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center"
+                style="width: 40px; height: 40px;"
+                data-bs-toggle="modal"
+                data-bs-placement="top"
+                title="Adicionar nova lista"
+                data-bs-target="#adicionarLista"
+                >
+                +
+                </button>
             </div>
         </div>
     </section>
@@ -290,39 +453,199 @@
             <div class="col">
                 <div class="card shadow h-100 position-relative">
                     <div class="card-body">
+                        <button class="btn btn-sm btn-outline-primary border-0 position-absolute top-0" style="right: 2.75rem; top: 0.5rem !important;" title="Editar lista" data-bs-toggle="modal" data-bs-target="#editarListaModal">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
                         <button class="btn btn-sm btn-outline-primary btn-lixo position-absolute top-0 end-0 m-2 border-0" title="Deletar lista">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
-                            <h5 class="card-title">Título da Lista</h5>
-                            <div class="d-flex mt-2">
+                            <h5 class="card-title">ADA</h5>
+                            <div class="d-flex mt-2 pb-3">
                                 <input class="form-control me-2" type="text" placeholder="Adicione" aria-label="Adicione um item"/>
                                 <a href="#" class="btn btn-primary adicionar">+</a>
                             </div>
+
+                            <li class="d-flex align-items-center gap-2 mb-1">
+                                <input type="checkbox" class="form-check-input mt-0">
+                                <span>Lógica de Programação</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-2 mb-1">
+                                <input type="checkbox" class="form-check-input mt-0">
+                                <span>Programação Orientada a Objetos</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-2 mb-1">
+                                <input type="checkbox" class="form-check-input mt-0">
+                                <span>Frontend Estático (HTML e CSS)</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-2 mb-1">
+                                <input type="checkbox" class="form-check-input mt-0">
+                                <span>Frontend Dinämico (JS DOM)</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-2 mb-1">
+                                <input type="checkbox" class="form-check-input mt-0">
+                                <span>React II</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-2 mb-1">
+                                <input type="checkbox" class="form-check-input mt-0">
+                                <span>Node.js com express</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-2 mb-1">
+                                <input type="checkbox" class="form-check-input mt-0">
+                                <span>Métodos Ágeis e boas práticas</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-2 mb-1">
+                                <input type="checkbox" class="form-check-input mt-0">
+                                <span>Arquitetura de Software</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-2 mb-1">
+                                <input type="checkbox" class="form-check-input mt-0">
+                                <span>Testes Automatizados</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-2 mb-1">
+                                <input type="checkbox" class="form-check-input mt-0">
+                                <span>Infraestrutura WEB (AWS)</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-2 mb-1">
+                                <input type="checkbox" class="form-check-input mt-0">
+                                <span>Serviços Cloud (AWS)</span>
+                            </li>
                     </div>
                 </div>
+            </div>
+
+            <div class="col">
+                <div class="card shadow h-100 position-relative">
+                    <div class="card-body">
+                        <button class="btn btn-sm btn-outline-primary border-0 position-absolute top-0" style="right: 2.75rem; top: 0.5rem !important;" title="Editar lista" data-bs-toggle="modal" data-bs-target="#editarListaModal">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+                        <button class="btn btn-sm btn-outline-primary btn-lixo position-absolute top-0 end-0 m-2 border-0" title="Deletar lista">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                            <h5 class="card-title">SAP</h5>
+                            <div class="d-flex mt-2 pb-3">
+                                <input class="form-control me-2" type="text" placeholder="Adicione" aria-label="Adicione um item"/>
+                                <a href="#" class="btn btn-primary adicionar">+</a>
+                            </div>
+
+                              <li class="d-flex align-items-center gap-2 mb-1">
+                                <input type="checkbox" class="form-check-input mt-0">
+                                <span>Cursos ADA</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-2 mb-1">
+                                <input type="checkbox" class="form-check-input mt-0">
+                                <span>Task team Cherry</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-2 mb-1">
+                                <input type="checkbox" class="form-check-input mt-0">
+                                <span>Curso Java</span>
+                            </li>
+                            <li class="d-flex align-items-center gap-2 mb-1">
+                                <input type="checkbox" class="form-check-input mt-0">
+                                <span>Curso Cloud</span>
+                            </li>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col d-flex align-items-center ">
+                <button 
+                class="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center"
+                style="width: 40px; height: 40px;"
+                data-bs-toggle="modal"
+                data-bs-placement="top"
+                title="Adicionar nova lista"
+                data-bs-target="#adicionarLista"
+                >
+                +
+                </button>
             </div>
         </div>
     </section>
 
     <section class="cards.personalizados container my-4">
-        <h2 id="estudo">Estudo</h2>
+        <h2 id="estudo">Estudos</h2>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col">
                 <div class="card shadow h-100 position-relative">
                     <div class="card-body">
+                        <button class="btn btn-sm btn-outline-primary border-0 position-absolute top-0" style="right: 2.75rem; top: 0.5rem !important;" title="Editar lista" data-bs-toggle="modal" data-bs-target="#editarListaModal">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
                         <button class="btn btn-sm btn-outline-primary btn-lixo position-absolute top-0 end-0 m-2 border-0" title="Deletar lista">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
-                            <h5 class="card-title">Título da Lista</h5>
-                            <div class="d-flex mt-2">
+                            <h5 class="card-title">Cursos</h5>
+                            <div class="d-flex mt-2 pb-3">
                                 <input class="form-control me-2" type="text" placeholder="Adicione" aria-label="Adicione um item"/>
                                 <a href="#" class="btn btn-primary adicionar">+</a>
                             </div>
+
+                              <li class="d-flex align-items-center gap-2 mb-1">
+                                <input type="checkbox" class="form-check-input mt-0">
+                                <span>Leitura de livro</span>
+                            </li>
                     </div>
                 </div>
             </div>
+
+            <div class="col d-flex align-items-center ">
+                <button 
+                class="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center"
+                style="width: 40px; height: 40px;"
+                data-bs-toggle="modal"
+                data-bs-placement="top"
+                title="Adicionar nova lista"
+                data-bs-target="#adicionarLista"
+                >
+                +
+                </button>
+            </div>
         </div>
     </section>
+
+    <div class="modal fade" id="editarListaModal" tabindex="-1" aria-labelledby="editarListaModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="editarListaModalLabel">Editar lista</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editarListaForm">
+                        <div class="form-group mb-3">
+                            <label for="editarTitulo">Título</label>
+                            <input type="text" class="form-control" id="editarTitulo" placeholder="" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="editarCategoriaLista">Categoria</label>
+                            <select class="form-select" id="editarCategoriaLista" required>
+                                <option value="" disabled selected>Selecione uma categoria</option>
+                                <option value="compras">Compras</option>
+                                <option value="lazer">Lazer</option>
+                                <option value="eventos">Eventos</option>
+                                <option value="financas">Finanças</option>
+                                <option value="rotina">Rotina</option>
+                                <option value="saude">Saúde</option>
+                                <option value="trabalho">Trabalho</option>
+                                <option value="estudos">Estudos</option>
+                            </select>
+                        </div>
+                        <label for="editarItems">Itens</label>
+                        <div class="d-flex mt-2">
+                            <input class="form-control me-2" type="text" id="editarInputItem" placeholder="Adicione um item da lista" aria-label="Adicione um item"/>
+                            <button type="button" id="btnEditarAdicionarItem" class="btn btn-primary">+</button>
+                        </div>
+                        <ul id="editarListaItens" class="list-unstyled mt-3 mb-0"></ul>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" id="btnSalvarEdicao" class="btn btn-primary">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="modal fade" id="confirmarDeleteModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-sm">
@@ -339,66 +662,39 @@
     <footer class="text-center bg-body-tertiary">
         <div class="container pt-4">
             <section class="mb-4">
-            <a
-                data-mdb-ripple-init
-                class="btn btn-link btn-floating btn-lg text-body m-1"
-                href="#!"
-                role="button"
-                data-mdb-ripple-color="dark"
-                ><i class="fab fa-facebook-f"></i
-            ></a>
+                <a
+                    data-mdb-ripple-init
+                    class="btn btn-link btn-floating btn-lg text-body m-1"
+                    href="#!"
+                    role="button"
+                    data-mdb-ripple-color="dark"
+                    ><i class="fab fa-google"></i
+                ></a>
 
-            <a
-                data-mdb-ripple-init
-                class="btn btn-link btn-floating btn-lg text-body m-1"
-                href="#!"
-                role="button"
-                data-mdb-ripple-color="dark"
-                ><i class="fab fa-twitter"></i
-            ></a>
+                <a
+                    data-mdb-ripple-init
+                    class="btn btn-link btn-floating btn-lg text-body m-1"
+                    href="#!"
+                    role="button"
+                    data-mdb-ripple-color="dark"
+                    ><i class="fab fa-linkedin"></i
+                ></a>
+                <a
+                    data-mdb-ripple-init
+                    class="btn btn-link btn-floating btn-lg text-body m-1"
+                    href="./github.jpg"
+                    role="button"
+                    data-mdb-ripple-color="dark"
+                    ><i class="fab fa-github"></i
+                ></a>
+            </section>
+        </div>
 
-            <a
-                data-mdb-ripple-init
-                class="btn btn-link btn-floating btn-lg text-body m-1"
-                href="#!"
-                role="button"
-                data-mdb-ripple-color="dark"
-                ><i class="fab fa-google"></i
-            ></a>
-
-            <a
-                data-mdb-ripple-init
-                class="btn btn-link btn-floating btn-lg text-body m-1"
-                href="#!"
-                role="button"
-                data-mdb-ripple-color="dark"
-                ><i class="fab fa-instagram"></i
-            ></a>
-
-            <a
-                data-mdb-ripple-init
-                class="btn btn-link btn-floating btn-lg text-body m-1"
-                href="#!"
-                role="button"
-                data-mdb-ripple-color="dark"
-                ><i class="fab fa-linkedin"></i
-            ></a>
-            <a
-                data-mdb-ripple-init
-                class="btn btn-link btn-floating btn-lg text-body m-1"
-                href="./github.jpg"
-                role="button"
-                data-mdb-ripple-color="dark"
-                ><i class="fab fa-github"></i
-            ></a>
-        </section>
-    </div>
-
-    <div class="text-center p-3" style="background-color: rgba(114, 114, 114, 0.05);">
-        © 2020 Copyright
-        <a class="text-body" href="https://mdbootstrap.com/">To-Do List</a>
-    </div>
-</footer>
+        <div class="text-center p-3" style="background-color: rgba(114, 114, 114, 0.05);">
+            © 2026 Copyleft
+            <a class="text-body" href="https://mdbootstrap.com/">Bárbara Azevedo</a>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script src="./toDoList.js"></script>
